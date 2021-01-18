@@ -55,10 +55,8 @@ for m=2:M
         fn=fft(f);
     end
     
-    for k=1:N
-        C=0.5*(kx(k))^2*nu*dt;
-        un(k)=((1.0-C)*un_old(k)-0.5*dt*(3.0*Fn(k)-Fn_old(k))+dt*fn(k))/(1.0+C);
-    end
+    C=nu*dt*0.5*(kx).^2; 
+    un=((1.0-C).*un_old-0.5*dt*(3.0*Fn-Fn_old)+dt*fn)./(1.0+C);
     
     un_old=un;
     u=real(ifft(un));
